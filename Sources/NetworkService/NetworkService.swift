@@ -15,7 +15,7 @@ public enum NetworkError: Error {
 }
 
 protocol NetworkClient {
-    func fetch<T:Decodable>(url: URL,
+    open func fetch<T:Decodable>(url: URL,
                               resultType: T.Type,
                               completionHandler: @escaping(Result<T, NetworkError>)-> Void)
 }
@@ -23,7 +23,7 @@ protocol NetworkClient {
 open class NetworkService: NetworkClient {
     public init() {}
 
-    public func fetch<T:Decodable>(url: URL,
+    open func fetch<T:Decodable>(url: URL,
                               resultType: T.Type,
                                      completionHandler: @escaping(Result<T, NetworkError>)-> Void) {
         completionHandler(.failure(.authenticationError))
