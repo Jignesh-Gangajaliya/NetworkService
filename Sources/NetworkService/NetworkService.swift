@@ -10,11 +10,12 @@ public enum NetworkError: Error {
     case invalidURL
     case emptyData
     case noNetwork
+    case authenticationError
     case network(Error)
 }
 
 protocol NetworkClient {
-    func fetch<T:Decodable>(url: URL?,
+    func fetch<T:Decodable>(url: URL,
                               resultType: T.Type,
                               completionHandler: @escaping(Result<T, NetworkError>)-> Void)
 }
@@ -22,10 +23,10 @@ protocol NetworkClient {
 public class NetworkService: NetworkClient {
     public init() {}
 
-    public func fetch<T:Decodable>(url: URL?,
+    public func fetch<T:Decodable>(url: URL,
                               resultType: T.Type,
                                      completionHandler: @escaping(Result<T, NetworkError>)-> Void) {
-        completionHandler(.failure(.invalidURL))
+        completionHandler(.failure(.authenticationError))
     }
 
 }
