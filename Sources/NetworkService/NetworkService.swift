@@ -20,7 +20,7 @@ protocol NetworkClient {
                               completionHandler: @escaping(Result<T, NetworkError>)-> Void)
 }
 
-public class NetworkService: NetworkClient {
+open class NetworkService: NetworkClient {
     public init() {}
 
     public func fetch<T:Decodable>(url: URL,
